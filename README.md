@@ -27,9 +27,9 @@ Contact: `pilot@gamenightlab.com`
 | `styles.css` | Brand styles (aligned with kingdom-os-landing tokens) |
 | `assets/favicon.svg` | Favicon |
 | `assets/og-card.svg` | Open Graph card |
-| `public/` | Optional mirror for tooling that expects a `public/` root (same files as repo root for Pages) |
+| `scripts/validate-links.mjs` | Static CTA/link checks |
 
-For Cloudflare Pages, the **production output is the repository root** (or the `public/` copy — both are identical static trees). Prefer deploying the **repository root**.
+For Cloudflare Pages, the **production output is the repository root** (no build step).
 
 ## Local preview
 
