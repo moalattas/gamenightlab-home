@@ -4,7 +4,7 @@ Static public homepage for **https://gamenightlab.com**
 
 This repository contains **only** the company marketing homepage (HTML/CSS/assets). It does **not** include Kingdom OS application code, Backend_Forge, Frontend_Hall, OAuth, nginx, or pilot deployment configuration.
 
-Version: **Home v0.1.1**
+Version: **Home v0.1.2**
 
 ## Journey
 
