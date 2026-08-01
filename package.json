@@ -1,0 +1,11 @@
+{
+  "name": "gamenightlab-home",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Static GameNightLab company homepage",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-links.mjs",
+    "preview": "npx --yes serve -l 5055 ."
+  }
+}
