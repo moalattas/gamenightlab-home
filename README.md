@@ -4,7 +4,7 @@ Static public homepage for **https://gamenightlab.com**
 
 This repository contains **only** the company marketing homepage (HTML/CSS/assets). It does **not** include Kingdom OS application code, Backend_Forge, Frontend_Hall, OAuth, nginx, or pilot deployment configuration.
 
-Version: **Home v0.1.0**
+Version: **Home v0.1.1**
 
 ## Journey
 
@@ -23,61 +23,73 @@ Contact: `pilot@gamenightlab.com`
 
 | Path | Purpose |
 |------|---------|
-| `index.html` | Homepage (`/`) |
-| `styles.css` | Brand styles (aligned with kingdom-os-landing tokens) |
-| `assets/favicon.svg` | Favicon |
-| `assets/og-card.svg` | Open Graph card |
-| `scripts/validate-links.mjs` | Static CTA/link checks |
+| `public/index.html` | Homepage (`/`) — **deploy tree** |
+| `public/styles.css` | Brand styles (aligned with kingdom-os-landing tokens) |
+| `public/assets/` | Favicon + Open Graph card |
+| `wrangler.jsonc` | Cloudflare Workers static-assets config (`assets.directory = ./public`) |
+| `scripts/validate-links.mjs` | Static CTA/link + size checks |
+| `package.json` | Local preview/validate scripts only (not deployed) |
 
-For Cloudflare Pages, the **production output is the repository root** (no build step).
+**Deploy boundary:** Cloudflare must publish **`./public` only**. Never deploy the repository root (that would upload `node_modules`, including oversized binaries such as `workerd`).
 
 ## Local preview
 
 ```bash
-npx --yes serve -l 5055
+npm run preview
+# or: npx --yes serve -l 5055 public
 ```
 
 Open http://127.0.0.1:5055/
 
-## Cloudflare Pages deployment
+## Cloudflare deployment settings
 
 Suggested project name: **`gamenightlab-home`**
 
-### Option A — Direct upload (no build)
+### Workers static assets / Wrangler
 
-1. Create a Cloudflare Pages project named `gamenightlab-home`.
-2. Upload / connect this repository.
-3. Build settings:
-   - Framework preset: **None**
-   - Build command: *(leave empty)*
-   - Build output directory: `/` (repository root)
-4. After the first successful deploy, attach custom domains:
-   - `gamenightlab.com`
-   - `www.gamenightlab.com`
+`wrangler.jsonc` sets:
 
-### Option B — Git-connected project
+- `name`: `gamenightlab-home`
+- `assets.directory`: `./public`
 
-1. Connect the `moalattas/gamenightlab-home` GitHub repository.
-2. Production branch: `main` (after this PR merges).
-3. Same build settings as Option A (no build; output `/`).
+Deploy with Wrangler (when you choose to publish — not part of this packaging fix):
+
+```bash
+npx wrangler deploy
+```
+
+### Cloudflare dashboard (Workers Builds / Pages-style)
+
+| Setting | Value |
+|---------|--------|
+| Framework preset | **None** |
+| Build command | *(leave blank)* |
+| Deploy / static assets directory | **`public`** (resolves to `./public`) |
+| Production branch | `main` |
+
+Do **not** set the assets directory to `/` or `.` (repository root).
+
+After a successful deploy, attach custom domains (human ops):
+
+- `gamenightlab.com`
+- `www.gamenightlab.com`
 
 ### DNS note (do not change from this repo)
 
-Existing Cloudflare DNS for the zone currently points **root** and **www** at:
+Existing Cloudflare DNS for the zone may still point **root** and **www** at:
 
 `parkingpage.namecheap.com`
 
-That parking target is **outside** this repository. After the Pages project is live, use Cloudflare’s custom-domain flow for `gamenightlab.com` and `www.gamenightlab.com` so Pages becomes the origin and replaces the Namecheap parking page. Do **not** edit DNS from application code.
+Custom-domain activation replaces parking after Pages/Workers assets are live. Do **not** edit DNS from application code.
 
 ## Validation
 
 ```bash
-# static link check (requires network for remote HEAD)
 node scripts/validate-links.mjs
-
-# whitespace / conflict markers
 git diff --check
 ```
+
+Confirms Explore CTAs, local assets under `public/`, and every file in `public/` is under Cloudflare’s 25 MiB asset limit.
 
 ## Out of scope
 
