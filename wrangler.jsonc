@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers static assets for GameNightLab home.
+  // Deploy ONLY ./public — never repository root (excludes node_modules).
+  "name": "gamenightlab-home",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}

@@ -6,6 +6,6 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate-links.mjs",
-    "preview": "npx --yes serve -l 5055 ."
+    "preview": "npx --yes serve -l 5055 public"
   }
 }
