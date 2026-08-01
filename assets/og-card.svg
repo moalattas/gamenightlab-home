@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="GameNightLab">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#040914"/>
+      <stop offset="100%" stop-color="#0a162b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="980" cy="120" r="220" fill="#00dfa2" opacity="0.08"/>
+  <circle cx="180" cy="520" r="260" fill="#528bec" opacity="0.12"/>
+  <text x="96" y="280" fill="#f4fbff" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="4">GAMENIGHTLAB</text>
+  <text x="96" y="360" fill="#00dfa2" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="600">Local-first software · Kingdom OS</text>
+  <text x="96" y="430" fill="#a9b9d8" font-family="Segoe UI, Arial, sans-serif" font-size="28">gamenightlab.com ’ kingdom.gamenightlab.com</text>
+</svg>
